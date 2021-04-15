@@ -75,6 +75,7 @@ import io.onedev.server.web.editable.annotation.Horizontal;
 import io.onedev.server.web.editable.annotation.NameOfEmptyValue;
 import io.onedev.server.web.editable.annotation.OmitName;
 import io.onedev.server.web.util.Testable;
+import io.onedev.k8shelper.ExecuteCondition;
 
 @Editable(order=100, description="This executor runs build jobs as pods in a kubernetes cluster. "
 		+ "<b class='text-danger'>Note:</b> Make sure server url is specified correctly in system "
@@ -811,7 +812,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 					List<Action> actions = new ArrayList<>();
 					CommandExecutable executable = new CommandExecutable((String) executionContext, 
 							Lists.newArrayList("this does not matter"));
-					actions.add(new Action(executable, true));
+					actions.add(new Action(executable, executeCondition.ALWAYS));
 					entryExecutable = new CompositeExecutable(actions);
 				}
 				
