@@ -110,7 +110,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 	
 	private boolean createCacheLabels = true;
 	
-	ExecuteCondition executeCondition
+	ExecuteCondition executeCondition;
 
 	@Editable(order=20, description="Optionally specify node selector of the job pods")
 	public List<NodeSelectorEntry> getNodeSelector() {
