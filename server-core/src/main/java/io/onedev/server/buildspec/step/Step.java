@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import io.onedev.k8shelper.Action;
 import io.onedev.k8shelper.Executable;
+import io.onedev.k8shelper.ExecuteCondition;
 import io.onedev.server.buildspec.BuildSpec;
 import io.onedev.server.web.editable.annotation.Editable;
 
@@ -13,6 +14,7 @@ public abstract class Step implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private boolean alwaysExecute;
+	private ExecuteCondition executeCondition;
 	
 	public abstract Executable getExecutable(BuildSpec buildSpec);
 
@@ -26,6 +28,6 @@ public abstract class Step implements Serializable {
 	}
 	
 	public Action getAction(BuildSpec buildSpec) {
-		return new Action(alwaysExecute, getExecutable(buildSpec));
+		return new Action(getExecutable(buildSpec), this.executeCondition.ALWAYS);
 	}
 }
