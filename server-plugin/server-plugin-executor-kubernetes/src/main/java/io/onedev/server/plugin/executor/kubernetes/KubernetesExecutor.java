@@ -109,6 +109,8 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 	private String kubeCtlPath;
 	
 	private boolean createCacheLabels = true;
+	
+	ExecuteCondition executeCondition
 
 	@Editable(order=20, description="Optionally specify node selector of the job pods")
 	public List<NodeSelectorEntry> getNodeSelector() {
@@ -809,7 +811,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 					List<Action> actions = new ArrayList<>();
 					CommandExecutable executable = new CommandExecutable((String) executionContext, 
 							Lists.newArrayList("this does not matter"));
-					actions.add(new Action(true, executable));
+					actions.add(new Action(executable, true));
 					entryExecutable = new CompositeExecutable(actions);
 				}
 				
